@@ -54,11 +54,11 @@ const getCountryFromAirportIata = (iata) => R.pipe(
  * @returns list [iso1,iso2,...]
  */
 const getDestinationCountryFromAirportIata = (iata) => R.pipe(
-  R.filter(R.where({from: R.equals(iata)})),
+  R.filter(R.where({from: R.equals(iata)})), //propEqual
   R.map(R.prop('to')),
   R.map(getCountryFromAirportIata),
   R.uniq,
-  R.filter(R.isNotNil()),
+  R.filter(R.isNotNil),
 )(result['data']);
 
 /**
