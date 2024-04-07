@@ -19,6 +19,7 @@
     "koa-body": "^6.0.1",
     "koa-bodyparser": "^4.4.1",
     "koa-router": "^12.0.1",
+    "puppeteer": "^22.6.3",
     "ramda": "^0.29.1"
   }
 }

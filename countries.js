@@ -7,11 +7,26 @@ const router = new Router({
 });
 
 //Functions
+/**
+ * Retourner la liste des codes IATA des aéroports du pays entré en paramètre
+ * @param iso
+ * @returns {*}
+ */
 const getAirportsIataByIso = (iso) => R.pipe(
   R.filter(R.where({iso_country: R.equals(iso)})),
   R.map(
     R.prop('iata_code')
   )
+)(airports['data']);
+
+/**
+ * Retourne une liste d'objets contenant les infos des aéroports d'un pays
+ * @param country
+ * @returns {*}
+ */
+const getCountryAirports = (country) => R.pipe(
+  R.filter(R.where({iso_country: R.equals(country)})),
+  R.map(R.omit(['iso_country']))
 )(airports['data']);
 
 const getIsoFromIata = (iata) => R.pipe(
@@ -39,12 +54,23 @@ router.get('/:iata', (ctx,next) => {
 
   if (answer.length) {
     ctx.body = answer;
-    console.log(answer.length);
   } else {
     ctx.response.status = 404;
     ctx.body = 'Item Not Found';
   }
   next();
-})
+});
+
+router.get('/infos/:iso', (ctx,next) => {
+  let pre_answer = [{iso:ctx.params.iso,airport:getCountryAirports(ctx.params.iso)}];
+  let answer = JSON.parse(JSON.stringify(pre_answer));
+
+  if(answer.length){
+    ctx.body = answer;
+  }else{
+    ctx.response.status=404;
+    ctx.body = 'Country Not Found';
+  }
+});
 
 module.exports = router;
