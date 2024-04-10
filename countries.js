@@ -1,6 +1,9 @@
 const Router = require('koa-router');
 const R = require('ramda');
 
+let airports = require('./airports.json');
+let data = require('./result.json');
+
 // Prefix all routes with: /items
 const router = new Router({
   prefix: '/countries'
@@ -24,10 +27,46 @@ const getAirportsIataByIso = (iso) => R.pipe(
  * @param country
  * @returns {*}
  */
+
+/*
 const getCountryAirports = (country) => R.pipe(
   R.filter(R.where({iso_country: R.equals(country)})),
   R.map(R.omit(['iso_country']))
 )(airports['data']);
+ */
+
+const getCountryAirports = (iso) => {
+  let iata_for_iso = [];
+  for(var line of airports['data']){
+    if(line.iso_country === iso){
+      iata_for_iso.push(line.iata_code);
+    }
+  }
+  return iata_for_iso;
+}
+
+const getAirportInfos = (iata) => {
+  let airport_obj = {}
+  for(let line of airports['data']){
+    if(line.iata_code === iata){
+      airport_obj["iata_code"] = iata;
+      airport_obj["name"] = line.name;
+    }
+  }
+  for(let line of data['data']){
+    if(line.to === iata){
+      airport_obj['city'] = line.city;
+      break;
+    }
+  }
+  return airport_obj;
+}
+
+getCountryAirportsInfo = (iso) => {
+  return getCountryAirports(iso).map((x) => getAirportInfos(x));
+}
+
+console.log(getCountryAirportsInfo('EC'));
 
 const getIsoFromIata = (iata) => R.pipe(
   R.filter(R.where({iata_code: R.equals(iata)})),
@@ -44,8 +83,6 @@ const getCountryFromAirport = (iata) => R.pipe(
   )
 )(data['data']);
 
-let airports = require('./airports.json');
-let data = require('./result.json');
 // Routes
 
 router.get('/:iata', (ctx,next) => {
@@ -62,7 +99,7 @@ router.get('/:iata', (ctx,next) => {
 });
 
 router.get('/infos/:iso', (ctx,next) => {
-  let pre_answer = [{iso:ctx.params.iso,airport:getCountryAirports(ctx.params.iso)}];
+  let pre_answer = [{iso:ctx.params.iso,airport:getCountryAirportsInfo(ctx.params.iso)}];
   let answer = JSON.parse(JSON.stringify(pre_answer));
 
   if(answer.length){

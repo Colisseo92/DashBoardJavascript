@@ -6,9 +6,12 @@ async function scrapData (url){
   await page.setUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3312.0 Safari/537.36")
   await page.goto(url);
 
-  await page.screenshot({path:"exemple.png"});
+  distance = await page.waitForSelector("/html/body/div[5]/div/div[1]/div/div[4]/div[1]/div/div[2]")
+  url = await(await distance.getProperties())
 
-  console.log(await page.content());
+  console.log(url);
+
+  console.log(distance);
 
   browser.close();
 }
