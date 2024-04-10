@@ -12,8 +12,8 @@ app.use(cors());
 
 // Require the routers
 let items = require('./airport.js');
-let countries = require('./countries.js');
-let destination = require('./destination');
+let countries = require('./countries2.js');
+let destination = require('./destination2.js');
 
 // use the routes
 app.use(items.routes());
