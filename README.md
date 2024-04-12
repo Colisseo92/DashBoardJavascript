@@ -25,7 +25,20 @@ Autres repositories en lien avec le dashboard
 
 ## API Reference
 
-#### Get all items
+#### Get all destination countries
+
+```http
+  GET destination/${iso}
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `iso` | `string` | **Required**. Iso du pays à fetch|
+
+Retourne les destinations dans lesquelles on peut se rendre depuis `iso`.
+`['country1','country2', ...]`
+
+#### Get all destination countries frequency
 
 ```http
   GET destination/frequency/${iso}
@@ -38,7 +51,7 @@ Autres repositories en lien avec le dashboard
 Retourne les destinations dans lesquelles on peut se rendre depuis `iso` avec la fréquence de leurs vols.\
 `[{'max_value':x,'data':[{'iso':'','frequence':''},...]}]`
 
-#### Get item
+#### Get destination countries from an airport
 
 ```http
   GET destination/${iso}/filter/${iata}
@@ -49,7 +62,16 @@ Retourne les destinations dans lesquelles on peut se rendre depuis `iso` avec la
 | `iso`      | `string` | **Required**. Iso du pays à fetch |
 | `iata`      | `string` | **Required**. Filtre de l'aéroport de départ |
 
-Retourne la liste des destinations dans lesquels ont peut se rendre depuis le pays `iso` depuis l'aéroport `iata` 
+Retourne la liste des destinations dans lesquelles on peut se rendre depuis le pays `iso` depuis l'aéroport `iata` 
 
-http://localhost:3000/countries/infos/FR
+#### Get airports infos of a country
 
+```http
+  GET countries/infos/${iso}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `iso`      | `string` | **Required**. Iso du pays à fetch |
+
+Retourne la liste des aéroports du pays `iso` avec leur nom, code iata et ville où ils se situent.
