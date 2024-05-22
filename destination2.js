@@ -7,9 +7,9 @@ const router = new Router({
 });
 
 //FILES
-let data = require('./new_airports.json');
+let data = require('./datas/new_airports.json');
 let airport_start = require('./airport_start.json');
-let result = require('./new_result.json');
+let result = require('./datas/new_result.json');
 
 /**
  * Fonction qui retourne une liste des aéroports dans lesquels on peut se rendre à partir d'un pays

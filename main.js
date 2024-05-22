@@ -11,12 +11,10 @@ app.use(koaBody());
 app.use(cors());
 
 // Require the routers
-let items = require('./airport.js');
 let countries = require('./countries2.js');
 let destination = require('./destination2.js');
 
 // use the routes
-app.use(items.routes());
 app.use(countries.routes());
 app.use(destination.routes());
 
@@ -26,4 +24,4 @@ localhost:3000/destination/FR -> liste des pays dans lesquels ont peut aller dep
 localhost:3000/airport/FR -> liste des aéroports français
  */
 
-app.listen(3000);
+app.listen(8181);

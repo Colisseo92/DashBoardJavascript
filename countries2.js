@@ -1,9 +1,9 @@
 const Router = require('koa-router');
 const R = require('ramda');
 
-let airports = require('./new_airports.json');
+let airports = require('./datas/new_airports.json');
 let destination_airport = require('./airport_start.json')
-let data = require('./new_result.json');
+let data = require('./datas/new_result.json');
 
 // Prefix all routes with: /items
 const router = new Router({
@@ -103,6 +103,7 @@ router.get('/:iata', (ctx,next) => {
   next();
 });
 
+//il manque juste la mise en forme dictionnaire pour fonctionner avec l'app
 router.get('/infos/:iso', (ctx,next) => {
   let pre_answer = [{iso:ctx.params.iso,airport:getCountryAirportsInfo(ctx.params.iso)}];
   let answer = JSON.parse(JSON.stringify(pre_answer));
