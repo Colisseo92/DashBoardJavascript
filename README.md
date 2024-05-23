@@ -21,57 +21,175 @@ Autres repositories en lien avec le dashboard
 
 [BackEnd - Javascript](https://github.com/Colisseo92/DashBoardJavascript)\
 [Front - Dart/Flutter](https://github.com/Colisseo92/FlutterDashboard)
-
-
 ## API Reference
+
+### Airport
 
 #### Get all destination countries
 
 ```http
-  GET destination/${iso}
+  GET /airports
+```
+```http
+  GET /airports_all
+```
+```http
+  GET /airports/iata
+```
+```http
+  GET /airports/name
+```
+```http
+  GET /airports/:iata_code
+```
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `iata_code` | `string` | **Required**. Code iata de l'aéroport|
+
+### Airport avec Ramda
+```http
+  GET /ramda/airports/iata
+```
+```http
+  GET /ramda/airports/name
+```
+```http
+  GET /ramda/airports/:iata_code
 ```
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| `iso` | `string` | **Required**. Iso du pays à fetch|
+| `iata_code` | `string` | **Required**. Code iata de l'aéroport|
 
-Retourne les destinations dans lesquelles on peut se rendre depuis `iso`.
-`['country1','country2', ...]`
 
-#### Get all destination countries frequency
+### Country
 
+#### Airport
 ```http
-  GET destination/frequency/${iso}
+/country/:iso_code
 ```
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| `iso` | `string` | **Required**. Iso du pays à fetch|
-
-Retourne les destinations dans lesquelles on peut se rendre depuis `iso` avec la fréquence de leurs vols.\
-`[{'max_value':x,'data':[{'iso':'','frequence':''},...]}]`
-
-#### Get destination countries from an airport
+| `iso_code` | `string` | **Required**. Code iso du pays|
 
 ```http
-  GET destination/${iso}/filter/${iata}
+  GET /country/:iso_code/airports
 ```
 
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `iso`      | `string` | **Required**. Iso du pays à fetch |
-| `iata`      | `string` | **Required**. Filtre de l'aéroport de départ |
-
-Retourne la liste des destinations dans lesquelles on peut se rendre depuis le pays `iso` depuis l'aéroport `iata` 
-
-#### Get airports infos of a country
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `iso_code` | `string` | **Required**. Code iso du pays|
 
 ```http
-  GET countries/infos/${iso}
+  GET /country/:iso_code/airports/iata
 ```
 
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `iso`      | `string` | **Required**. Iso du pays à fetch |
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `iso_code` | `string` | **Required**. Code iso du pays|
 
-Retourne la liste des aéroports du pays `iso` avec leur nom, code iata et ville où ils se situent.
+```http
+  GET /country/:iso_code/airports/name
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `iso_code` | `string` | **Required**. Code iso du pays|
+
+```http
+  GET /country/:iso_code/airports/info
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `iso_code` | `string` | **Required**. Code iso du pays|
+
+
+#### Destinations
+```http
+  GET /country/:iso_code/destinations
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `iso_code` | `string` | **Required**. Code iso du pays|
+
+```http
+  GET /country/:iso_code/destinations/frequency
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `iso_code` | `string` | **Required**. Code iso du pays|
+
+```http
+  GET /country/:iso_code/destinations/:iata_code
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `iso_code` | `string` | **Required**. Code iso du pays|
+| `iata_code` | `string` | **Required**. Code iata de l'aéroport du pays spécifié|
+
+### Country avec Ramda
+
+```http
+/ramda/country/:iso_code
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `iso_code` | `string` | **Required**. Code iso du pays|
+
+```http
+  GET /ramda/country/:iso_code
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `iso_code` | `string` | **Required**. Code iso du pays|
+
+```http
+  GET /ramda/country/:iso_code/airports
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `iso_code` | `string` | **Required**. Code iso du pays|
+
+```http
+  GET /ramda/country/:iso_code/airports/iata
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `iso_code` | `string` | **Required**. Code iso du pays|
+
+```http
+  GET /ramda/country/:iso_code/airports/name
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `iso_code` | `string` | **Required**. Code iso du pays|
+
+```http
+  GET /ramda/country/:iso_code/airports/info
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `iso_code` | `string` | **Required**. Code iso du pays|
+
+
+### Destination
+```http
+  GET /destination
+```
+```http
+  GET /destination/:iata_code
+```
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `iata_code` | `string` | **Required**. Code iata de l'aéroport|
