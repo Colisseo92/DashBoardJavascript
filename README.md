@@ -23,7 +23,7 @@ Autres repositories en lien avec le dashboard
 [Front - Dart/Flutter](https://github.com/Colisseo92/FlutterDashboard)
 ## API Reference
 
-### Airport
+### Aéroport
 
 #### Get all destination countries
 
@@ -46,7 +46,7 @@ GET /airports/${iata_code}
 | :-------- | :------- | :------------------------- |
 | `iata_code` | `string` | **Required**. Code iata de l'aéroport|
 
-### Airport avec Ramda
+### Aéroport avec Ramda
 ```http
 GET /ramda/airports/iata
 ```
@@ -62,9 +62,9 @@ GET /ramda/airports/${iata_code}
 | `iata_code` | `string` | **Required**. Code iata de l'aéroport|
 
 
-### Country
+### Pays
 
-#### Airport
+#### Aéroport
 ```http
 /country/${iso_code}
 ```
@@ -132,7 +132,7 @@ GET /country/${iso_code}/destinations/${iata_code}
 | `iso_code` | `string` | **Required**. Code iso du pays|
 | `iata_code` | `string` | **Required**. Code iata de l'aéroport du pays spécifié|
 
-### Country avec Ramda
+### Pays avec Ramda
 
 ```http
 /ramda/country/${iso_code}
