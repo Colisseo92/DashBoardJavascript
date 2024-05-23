@@ -28,7 +28,7 @@ Autres repositories en lien avec le dashboard
 #### Get all destination countries
 
 ```http
-  GET /airports
+GET /airports
 ```
 ```http
   GET /airports_all
