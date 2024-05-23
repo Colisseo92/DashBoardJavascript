@@ -31,16 +31,16 @@ Autres repositories en lien avec le dashboard
 GET /airports
 ```
 ```http
-  GET /airports_all
+GET /airports_all
 ```
 ```http
-  GET /airports/iata
+GET /airports/iata
 ```
 ```http
-  GET /airports/name
+GET /airports/name
 ```
 ```http
-  GET /airports/:iata_code
+GET /airports/${iata_code}
 ```
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
@@ -48,13 +48,13 @@ GET /airports
 
 ### Airport avec Ramda
 ```http
-  GET /ramda/airports/iata
+GET /ramda/airports/iata
 ```
 ```http
-  GET /ramda/airports/name
+GET /ramda/airports/name
 ```
 ```http
-  GET /ramda/airports/:iata_code
+GET /ramda/airports/${iata_code}
 ```
 
 | Parameter | Type     | Description                |
@@ -66,7 +66,7 @@ GET /airports
 
 #### Airport
 ```http
-/country/:iso_code
+/country/${iso_code}
 ```
 
 | Parameter | Type     | Description                |
@@ -74,7 +74,7 @@ GET /airports
 | `iso_code` | `string` | **Required**. Code iso du pays|
 
 ```http
-  GET /country/:iso_code/airports
+GET /country/${iso_code}/airports
 ```
 
 | Parameter | Type     | Description                |
@@ -82,7 +82,7 @@ GET /airports
 | `iso_code` | `string` | **Required**. Code iso du pays|
 
 ```http
-  GET /country/:iso_code/airports/iata
+GET /country/${iso_code}/airports/iata
 ```
 
 | Parameter | Type     | Description                |
@@ -90,7 +90,7 @@ GET /airports
 | `iso_code` | `string` | **Required**. Code iso du pays|
 
 ```http
-  GET /country/:iso_code/airports/name
+GET /country/${iso_code}/airports/name
 ```
 
 | Parameter | Type     | Description                |
@@ -98,7 +98,7 @@ GET /airports
 | `iso_code` | `string` | **Required**. Code iso du pays|
 
 ```http
-  GET /country/:iso_code/airports/info
+GET /country/${iso_code}/airports/info
 ```
 
 | Parameter | Type     | Description                |
@@ -108,7 +108,7 @@ GET /airports
 
 #### Destinations
 ```http
-  GET /country/:iso_code/destinations
+GET /country/${iso_code}/destinations
 ```
 
 | Parameter | Type     | Description                |
@@ -116,7 +116,7 @@ GET /airports
 | `iso_code` | `string` | **Required**. Code iso du pays|
 
 ```http
-  GET /country/:iso_code/destinations/frequency
+GET /country/${iso_code}/destinations/frequency
 ```
 
 | Parameter | Type     | Description                |
@@ -124,7 +124,7 @@ GET /airports
 | `iso_code` | `string` | **Required**. Code iso du pays|
 
 ```http
-  GET /country/:iso_code/destinations/:iata_code
+GET /country/${iso_code}/destinations/${iata_code}
 ```
 
 | Parameter | Type     | Description                |
@@ -135,7 +135,7 @@ GET /airports
 ### Country avec Ramda
 
 ```http
-/ramda/country/:iso_code
+/ramda/country/${iso_code}
 ```
 
 | Parameter | Type     | Description                |
@@ -143,7 +143,7 @@ GET /airports
 | `iso_code` | `string` | **Required**. Code iso du pays|
 
 ```http
-  GET /ramda/country/:iso_code
+GET /ramda/country/${iso_code}
 ```
 
 | Parameter | Type     | Description                |
@@ -151,7 +151,7 @@ GET /airports
 | `iso_code` | `string` | **Required**. Code iso du pays|
 
 ```http
-  GET /ramda/country/:iso_code/airports
+GET /ramda/country/${iso_code}/airports
 ```
 
 | Parameter | Type     | Description                |
@@ -159,7 +159,7 @@ GET /airports
 | `iso_code` | `string` | **Required**. Code iso du pays|
 
 ```http
-  GET /ramda/country/:iso_code/airports/iata
+GET /ramda/country/${iso_code}/airports/iata
 ```
 
 | Parameter | Type     | Description                |
@@ -167,7 +167,7 @@ GET /airports
 | `iso_code` | `string` | **Required**. Code iso du pays|
 
 ```http
-  GET /ramda/country/:iso_code/airports/name
+GET /ramda/country/${iso_code}/airports/name
 ```
 
 | Parameter | Type     | Description                |
@@ -175,7 +175,7 @@ GET /airports
 | `iso_code` | `string` | **Required**. Code iso du pays|
 
 ```http
-  GET /ramda/country/:iso_code/airports/info
+GET /ramda/country/${iso_code}/airports/info
 ```
 
 | Parameter | Type     | Description                |
@@ -185,10 +185,10 @@ GET /airports
 
 ### Destination
 ```http
-  GET /destination
+GET /destination
 ```
 ```http
-  GET /destination/:iata_code
+GET /destination/${iata_code}
 ```
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
