@@ -88,7 +88,7 @@ const getCountryAirport = (iso) => {
 }
 
 const getCountryFromAirport = (iata) => {
-  for(let line of data){
+  for(let line of data["data"]){
     if(line.iata_code === iata){
       return line.iso_country;
     }
@@ -156,6 +156,8 @@ const getCountryFrequency = (iso) => {
   return Object.keys(obj).length !== 0 ? [{max_value:highest,data:result_list}] : undefined;
 };
 
+console.log(getCountryFrequency("FR"));
+
 /*
 const getDestinationCountryFromAirportIata = (iata) => R.pipe(
   R.filter(R.where({from: R.equals(iata)})), //propEqual
@@ -177,7 +179,7 @@ const getAirportInfos = (iata) => {
   airport_obj['city'] = '';
   airport_obj['iata_code'] = '';
   airport_obj['name'] = '';
-  for(let line of data){
+  for(let line of data["data"]){
     if(line.iata_code === iata){
       airport_obj["iata_code"] = iata;
       airport_obj["name"] = line.name;
@@ -305,6 +307,8 @@ router.get('/frequency/:iso',(ctx,next) => {
   }
   next();
 });
+
+console.log(getDestinationCountryWithAirportFilter("FR","CDG")[0]["airport"])
 
 module.exports = router;
 
