@@ -24,7 +24,7 @@ Autres repositories en lien avec le dashboard
 
 ## API Reference
 
-### Datas
+## Datas
 
 Urls qui permettent d'accéder aux données json non traitées.
 
@@ -34,7 +34,7 @@ Urls qui permettent d'accéder aux données json non traitées.
 | `GET` | /airports | Liste de tous les aéroports présents dans des trajets.|
 | `GET` | /destination | Liste de tous les trajets.|
 
-### Aéroports
+## Aéroports
 Accèder à la liste de tous les codes IATAs des aéroports de `/airports`.
 #### Requête
 ```http
@@ -54,7 +54,7 @@ GET /airports/name
 ```python
 ["Port Moresby Jacksons International Airport","Keflavik International Airport",...]
 ```
-## 
+##  
 Accèder aux informations précises d'un aéroport en particulier.
 #### Requête
 ```http
@@ -63,7 +63,7 @@ GET /airports/$iata_code
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| `iata_code` | `string` | **Requit**. Code iata de l'aéroport|
+| `iata_code` | `string` | **Requis**. Code iata de l'aéroport|
 
 #### Réponse
 ```python
@@ -75,7 +75,7 @@ GET /airports/$iata_code
 ```
 
 ## 
-#### Aéroports avec Ramda
+### Aéroports avec Ramda
 
 Toutes les commandes ci-dessus peuvent aussi utiliser la dépendance Ramda.
 
@@ -86,134 +86,65 @@ Toutes les commandes ci-dessus peuvent aussi utiliser la dépendance Ramda.
 | `GET` | /ramda/airports/$iata_code | Informations sur un aéroport précis.|
 
 
-### Country
+## Pays
 
-#### Airport
-```http
-/country/:iso_code
-```
-
+Toutes les urls concernant les pays commencent par `/country/$iso_code/`.
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| `iso_code` | `string` | **Required**. Code iso du pays|
+| `iso_code` | `string` | **Requis**. Code iso du pays|
 
+### Aéroports
+Accèder à la liste des aéroports du pays.
+#### Requête
 ```http
-  GET /country/:iso_code/airports
+GET /country/$iso_code/airports
 ```
-
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `iso_code` | `string` | **Required**. Code iso du pays|
-
+#### Réponse
+```python
+[
+    {
+        "name":"nom de l'aéroport",
+        "iso_country":"iso du pays",
+        "iata_code":"code Iata de l'aéroport"
+    },
+    ...
+]
+```
+## 
+Accèder à la liste des codes IATAs des aéroports du pays.
+#### Requête
 ```http
-  GET /country/:iso_code/airports/iata
+GET /country/$iso_code/airports/iata
 ```
-
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `iso_code` | `string` | **Required**. Code iso du pays|
-
+#### Réponse
+```python
+["IATA1","IATA2","IATA3",...]
+```
+## 
+Accèder à la liste des noms des aéroports du pays.
+#### Requête
 ```http
-  GET /country/:iso_code/airports/name
+GET /country/$iso_code/airports/iata
 ```
-
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `iso_code` | `string` | **Required**. Code iso du pays|
-
+#### Réponse
+```python
+["NOM1","NOM2","NOM3",...]
+```
+## 
+Accèder aux informations plus précises des aéroports du pays.
+#### Requête
 ```http
-  GET /country/:iso_code/airports/info
+GET /country/$iso_code/airports/info
 ```
-
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `iso_code` | `string` | **Required**. Code iso du pays|
-
-
-#### Destinations
-```http
-  GET /country/:iso_code/destinations
+#### Réponse
+```python
+[
+    {
+        "name":"nom de l'aéroport",
+        "iata_code":"code Iata de l'aéroport",
+        "city":"ville où se situe l'aéroport"
+    },
+    ...
+]
 ```
-
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `iso_code` | `string` | **Required**. Code iso du pays|
-
-```http
-  GET /country/:iso_code/destinations/frequency
-```
-
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `iso_code` | `string` | **Required**. Code iso du pays|
-
-```http
-  GET /country/:iso_code/destinations/:iata_code
-```
-
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `iso_code` | `string` | **Required**. Code iso du pays|
-| `iata_code` | `string` | **Required**. Code iata de l'aéroport du pays spécifié|
-
-### Country avec Ramda
-
-```http
-/ramda/country/:iso_code
-```
-
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `iso_code` | `string` | **Required**. Code iso du pays|
-
-```http
-  GET /ramda/country/:iso_code
-```
-
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `iso_code` | `string` | **Required**. Code iso du pays|
-
-```http
-  GET /ramda/country/:iso_code/airports
-```
-
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `iso_code` | `string` | **Required**. Code iso du pays|
-
-```http
-  GET /ramda/country/:iso_code/airports/iata
-```
-
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `iso_code` | `string` | **Required**. Code iso du pays|
-
-```http
-  GET /ramda/country/:iso_code/airports/name
-```
-
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `iso_code` | `string` | **Required**. Code iso du pays|
-
-```http
-  GET /ramda/country/:iso_code/airports/info
-```
-
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `iso_code` | `string` | **Required**. Code iso du pays|
-
-
-### Destination
-```http
-  GET /destination
-```
-```http
-  GET /destination/:iata_code
-```
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `iata_code` | `string` | **Required**. Code iata de l'aéroport|
+### Destinations
