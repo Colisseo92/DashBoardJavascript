@@ -6,10 +6,10 @@ const router = new Router({
   prefix: '/destination'
 });
 
-//FILES
-let data = require('./new_airports.json');
+let data = require('./datas/new_airports.json');
 let airport_start = require('./airport_start.json');
-let result = require('./new_result.json');
+let result = require('./datas/new_result.json');
+
 
 /**
  * Fonction qui retourne une liste des aéroports dans lesquels on peut se rendre à partir d'un pays
@@ -88,7 +88,7 @@ const getCountryAirport = (iso) => {
 }
 
 const getCountryFromAirport = (iata) => {
-  for(let line of data){
+  for(let line of data["data"]){
     if(line.iata_code === iata){
       return line.iso_country;
     }
@@ -177,7 +177,7 @@ const getAirportInfos = (iata) => {
   airport_obj['city'] = '';
   airport_obj['iata_code'] = '';
   airport_obj['name'] = '';
-  for(let line of data){
+  for(let line of data["data"]){
     if(line.iata_code === iata){
       airport_obj["iata_code"] = iata;
       airport_obj["name"] = line.name;
@@ -305,6 +305,7 @@ router.get('/frequency/:iso',(ctx,next) => {
   }
   next();
 });
+
 
 module.exports = router;
 
