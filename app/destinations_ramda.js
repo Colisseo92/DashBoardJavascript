@@ -30,3 +30,6 @@ const RgetDestinationFromIsoFromIata = (iata,airport_list) => R.pipe(
   R.filter((destination) => destination !== undefined),
   R.uniq
 );
+
+
+const RgetDestinationFrequency = (iso,destination_list,airport_list) => [{max_value:highest,data:result_list}]
