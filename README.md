@@ -124,7 +124,7 @@ GET /country/$iso_code/airports/iata
 Accèder à la liste des noms des aéroports du pays.
 #### Requête
 ```http
-GET /country/$iso_code/airports/iata
+GET /country/$iso_code/airports/name
 ```
 #### Réponse
 ```python
@@ -147,4 +147,88 @@ GET /country/$iso_code/airports/info
     ...
 ]
 ```
+
 ### Destinations
+Accèder à la liste des codes ISOs des pays dans lesquels on peut se rendre depuis le pays choisi.
+#### Requête
+```http
+GET /country/$iso_code/destinations
+```
+#### Réponse
+```python
+["ISO1","ISO2","ISO3",...]
+```
+## 
+Accèder à la fréquence depuis le pays choisi vers toutes les destinations disponibles.
+#### Requête
+```http
+GET /country/$iso_code/destinations
+```
+#### Réponse
+```python
+[
+    {
+        "max_value":"fréquence maximale tout pays confondu",
+        "data":[
+            {"iso":"ISO1",
+            "frequence":"fréquence"
+            },
+            ...
+        ]
+    }
+]
+```
+## 
+Accèder liste des destinations atteignables par pays depuis le pays choisi pour un aéroport précis.
+#### Requête
+```http
+GET /country/$iso_code/destinations/$iata_code
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `iso_code` | `string` | **Requis**. Code iso du pays.|
+| `iata_code` | `string` | **Requis**. Code iata de l'aéroport de départ.|
+
+#### Réponse
+```python
+[
+    {
+        "iso":"ISO1",
+        "airport":[
+            {
+                "name":"NAME1",
+                "iata_code":"IATA1",
+                "city":"CITY1"
+            },
+            ...
+        ]
+    },
+    ...
+]
+```
+### Pays avec Ramda
+
+Toutes les commandes ci-dessus peuvent aussi utiliser la dépendance Ramda.
+
+#### Aéroports
+
+| Méthode | Url     | Description                |
+| :-------- | :------- | :------------------------- |
+| `GET` | /ramda/country/$iso_code/airports | Liste des aéroports de `iso_code`|
+| `GET` | /ramda/country/$iso_code/airports/iata | Liste des codes IATAs des aéroports de `iso_code`|
+| `GET` | /ramda/country/$iso_code/airports/name | Liste des noms des aéroports de `iso_code`|
+| `GET` | /ramda/country/$iso_code/airports/info | Liste des informations des aéroports de `iso_code`|
+
+## Destinations
+Liste des codes ISOs des pays accessibles depuis un aéroport.
+#### Requête
+```http
+GET /destination/$iata_code
+```
+#### Réponse
+```python
+["ISO1","ISO2","ISO3",...]
+```
+## 
+
