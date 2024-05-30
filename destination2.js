@@ -6,10 +6,10 @@ const router = new Router({
   prefix: '/destination'
 });
 
-//FILES
 let data = require('./datas/new_airports.json');
 let airport_start = require('./airport_start.json');
 let result = require('./datas/new_result.json');
+
 
 /**
  * Fonction qui retourne une liste des aéroports dans lesquels on peut se rendre à partir d'un pays
@@ -155,8 +155,6 @@ const getCountryFrequency = (iso) => {
   })
   return Object.keys(obj).length !== 0 ? [{max_value:highest,data:result_list}] : undefined;
 };
-
-console.log(getCountryFrequency("FR"));
 
 /*
 const getDestinationCountryFromAirportIata = (iata) => R.pipe(
@@ -308,7 +306,6 @@ router.get('/frequency/:iso',(ctx,next) => {
   next();
 });
 
-console.log(getDestinationCountryWithAirportFilter("FR","CDG")[0]["airport"])
 
 module.exports = router;
 

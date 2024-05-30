@@ -10,7 +10,6 @@ const app = new Koa();
 app.use(koaBody());
 app.use(cors());
 
-// Require the routers
 let countries = require('./countries2.js');
 let destination = require('./destination2.js');
 
@@ -25,3 +24,4 @@ localhost:3000/airport/FR -> liste des aéroports français
  */
 
 app.listen(8181);
+
