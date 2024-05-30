@@ -21,45 +21,69 @@ Autres repositories en lien avec le dashboard
 
 [BackEnd - Javascript](https://github.com/Colisseo92/DashBoardJavascript)\
 [Front - Dart/Flutter](https://github.com/Colisseo92/FlutterDashboard)
+
 ## API Reference
 
-### Airport
+### Datas
 
-#### Get all destination countries
+Urls qui permettent d'accéder aux données json non traitées.
 
+| Méthode | Url     | Description                |
+| :-------- | :------- | :------------------------- |
+| `GET` | /airports_all | Liste de tous les aéroports.|
+| `GET` | /airports | Liste de tous les aéroports présents dans des trajets.|
+| `GET` | /destination | Liste de tous les trajets.|
+
+### Aéroports
+Accèder à la liste de tous les codes IATAs des aéroports de `/airports`.
+#### Requête
 ```http
-  GET /airports
+GET /airports/iata
 ```
+#### Réponse
+```python
+["POM","KEF","PRN","YEG","YHZ","YOW","YUL","YVR","YYC","YYJ","YYT","YYZ","ALG",...]
+```
+### 
+Accèder à la liste de tous les noms des aéroports de `/airports`.
+#### Requête
 ```http
-  GET /airports_all
+GET /airports/name
 ```
+#### Réponse
+```python
+["Port Moresby Jacksons International Airport","Keflavik International Airport",...]
+```
+### 
+Accèder aux informations précises d'un aéroport en particulier.
+#### Requête
 ```http
-  GET /airports/iata
+GET /airports/$iata_code
 ```
-```http
-  GET /airports/name
-```
-```http
-  GET /airports/:iata_code
-```
+
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| `iata_code` | `string` | **Required**. Code iata de l'aéroport|
+| `iata_code` | `string` | **Requit**. Code iata de l'aéroport|
 
-### Airport avec Ramda
-```http
-  GET /ramda/airports/iata
-```
-```http
-  GET /ramda/airports/name
-```
-```http
-  GET /ramda/airports/:iata_code
+#### Réponse
+```python
+{
+    "name":"nom de l'aéroport",
+    "iata_code":"code iata de l'aéroport",
+    "city":"ville dans laquelle se situe l'aéroport"
+}
 ```
 
-| Parameter | Type     | Description                |
+### 
+#### Aéroports avec Ramda
+
+Toutes les commandes ci-dessus peuvent aussi utiliser la dépendance Ramda.
+
+| Méthode | Url     | Description                |
 | :-------- | :------- | :------------------------- |
-| `iata_code` | `string` | **Required**. Code iata de l'aéroport|
+| `GET` | /ramda/airports/iata | Liste des codes IATAs des aéroports.|
+| `GET` | /ramda/airports/name | Liste des noms des aéroports.|
+| `GET` | /ramda/airports/$iata_code | Informations sur un aéroport précis.|
 
 
 ### Country
