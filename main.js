@@ -11,6 +11,7 @@ import {
 import {getDestinationFromIso,getDestinationFromIsoFromIata, getDestinationFlightFrequency,getDestinationCountryWithAirportListFromIata} from "./app/destinations.js";
 import {RgetAirportsIata, RgetAirportsName, RgetAirportInfos, RgetCountryFromIata} from "./app/airport_ramda.js";
 import {RgetAirportsFromIso, RgetAirportsNameFromIso, RgetAirportsIataFromIso, RgetAirportsInfosFromIso} from "./app/countrie_ramda.js";
+import {RgetDestinationFromIso,RgetDestinationFromIsoFromIata} from "./app/destinations_ramda.js";
 import fs from "fs";
 
 //https://www.fbrs.io/ramda/
@@ -51,6 +52,7 @@ router.get("/", (ctx) => {
     '<h3>Destination</h3>',
     'GET <a href="http://localhost:'+ pin +'/destination">/destination</a> | Fichier destination',
     'GET <a href="http://localhost:'+ pin +'/destination/CDG">/destination/{iata_code}</a> | Liste des destinations à partir d\'un aéroport',
+    'GET <a href="http://localhost:'+ pin +'/ramda/destination/CDG">/ramda/destination/{iata_code}</a> | Liste des destinations à partir d\'un aéroport (avec Ramda)',
   ].join("<br>");
 });
 
@@ -86,6 +88,8 @@ router.get("/ramda/country/:iso", (ctx) => {
     'GET <a href="http://localhost:'+ pin +'/ramda/country/FR/airports/iata">/ramda/country/{iso_code}/airports/iata</a> | Liste des codes IATA des aéroports de ' + country,
     'GET <a href="http://localhost:'+ pin +'/ramda/country/FR/airports/name">/ramda/country/{iso_code}/airports/name</a> | Liste des NOMS des aéroports disponibles de ' + country,
     'GET <a href="http://localhost:'+ pin +'/ramda/country/FR/airports/info">/ramda/country/{iso_code}/airports/info</a> | Liste avec les informations des aéroports de ' + country,
+    '<h3>Destination w/ Ramda</h3>',
+    'GET <a href="http://localhost:'+ pin +'/ramda/country/FR/destinations">/ramda/country/{iso_code}/destinations</a> | Liste des code ISO des pays de destination de ' + country
   ].join("<br>");
 });
 
@@ -272,6 +276,17 @@ router.get("/country/:iso/destinations",(ctx,next) => {
     ctx.response.status=404;
   }
 });
+//Country airport infos ramda
+router.get("/ramda/country/:iso/destinations",(ctx,next) => {
+  let country = ctx.params.iso.toUpperCase();
+  let answer = RgetDestinationFromIso(country,full_airport_list)(destination_list["data"]);
+
+  if(answer.length){
+    ctx.body = answer;
+  }else{
+    ctx.response.status=404;
+  }
+});
 //Country destination flight frequency
 router.get("/country/:iso/destinations/frequency",(ctx,next) => {
   let country = ctx.params.iso.toUpperCase();
@@ -309,6 +324,17 @@ router.get("/destination",(ctx,next) => {
 router.get("/destination/:iata",(ctx,next) => {
   let airport = ctx.params.iata.toUpperCase();
   let answer = getDestinationFromIsoFromIata(airport,destination_list,full_airport_list);
+
+  if(answer){
+    ctx.body = answer;
+  }else{
+    ctx.response.status=404;
+  }
+});
+//Country destination from specified airport with ramda
+router.get("/ramda/destination/:iata",(ctx,next) => {
+  let airport = ctx.params.iata.toUpperCase();
+  let answer = RgetDestinationFromIsoFromIata(airport,full_airport_list)(destination_list["data"]);
 
   if(answer){
     ctx.body = answer;
