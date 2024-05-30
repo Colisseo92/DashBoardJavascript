@@ -44,7 +44,7 @@ GET /airports/iata
 ```python
 ["POM","KEF","PRN","YEG","YHZ","YOW","YUL","YVR","YYC","YYJ","YYT","YYZ","ALG",...]
 ```
-### 
+## 
 Accèder à la liste de tous les noms des aéroports de `/airports`.
 #### Requête
 ```http
@@ -54,7 +54,7 @@ GET /airports/name
 ```python
 ["Port Moresby Jacksons International Airport","Keflavik International Airport",...]
 ```
-### 
+## 
 Accèder aux informations précises d'un aéroport en particulier.
 #### Requête
 ```http
@@ -74,7 +74,7 @@ GET /airports/$iata_code
 }
 ```
 
-### 
+## 
 #### Aéroports avec Ramda
 
 Toutes les commandes ci-dessus peuvent aussi utiliser la dépendance Ramda.
