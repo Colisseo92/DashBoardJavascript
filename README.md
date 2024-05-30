@@ -5,10 +5,10 @@ API pour un dashboard sur les vols dans le monde
 
 ## Informations
 
-Cette API a été réalisée dans le cadre d'un projet scolaire. Il permet d'avoir accès à des données depuis le dashboard du projet.\
+Cette API a été réalisée dans le cadre d'un projet scolaire. Elle permet d'avoir accès à des données depuis le dashboard du projet.\
 Les fonctions et URLs de l'API possèdent deux versions. Une version faite en Javascript de base et une version faite en programmation fonctionnelle avec la dépendance `Ramda`.
 \
-L'API étant utilisée dans une interface graphique, nous avions besoin de très peu de temps de latence de la part de cette API. Cependant, l'utilisation de Ramda fait que l'API met pas mal de temps à répondre.
+L'API étant utilisée dans une interface graphique, nous avions besoin de très peu de temps de latence. Cependant, l'utilisation de Ramda fait que l'API met pas mal de temps à répondre.
 
 
 Le but du projet étant avant tout d'apprendre la programmation fonctionnelle, nous avons donc réécrit les fonctions avec Ramda pour apprendre son fonctionnement.
