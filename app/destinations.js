@@ -1,13 +1,5 @@
 import {getAirportInfos, getCountryFromIata} from "./airports.js";
 import {getAirportsIataFromIso} from "./countrie.js";
-import fs from "fs";
-
-let rawdata = fs.readFileSync('../datas/new_airports.json')
-let airport_list = JSON.parse(rawdata);
-let rawdata2 = fs.readFileSync('../datas/new_result.json')
-let destination_list = JSON.parse(rawdata2);
-let rawdata3 = fs.readFileSync('../airport_start.json')
-let full_airport_list = JSON.parse(rawdata3);
 
 const getDestinationFromIso = (iso,destination_list,airport_list) => {
   let destination_country = [];
